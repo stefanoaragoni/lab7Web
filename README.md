@@ -1,9 +1,4 @@
 # lab7Web
-
-Agregar un file a la carpeta principal del proyecto llamado ".babelrc" que tenga adentro el siguiente contenido:
-
-{ "presets": ["@babel/preset-env", "@babel/preset-react"] }
-
 __________
 
 Pasos para abrir proyecto:
