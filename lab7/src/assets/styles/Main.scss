@@ -20,6 +20,8 @@ $background-image: "../assets/static/sabrina.jpg";
   max-height: 100vh;
   min-width: 100vh;
 
+  padding: 20px;
+
   display: flex;
   flex: auto;
   flex-flow: wrap;
@@ -35,6 +37,8 @@ $background-image: "../assets/static/sabrina.jpg";
   max-height: 100vh;
   min-width: 100vh;
 
+  padding: 20px;
+
   display: flex;
   flex: auto;
   flex-flow: wrap;
@@ -49,7 +53,10 @@ $background-image: "../assets/static/sabrina.jpg";
 .bottom{
   background-color: $background-color3;
   height: 100px;
-  min-width: 100vh;
+  min-width: 100%;
+
+  position: absolute; 
+  bottom:0%;
 
   display: flex;
   flex: auto;
@@ -57,6 +64,8 @@ $background-image: "../assets/static/sabrina.jpg";
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
+
 
   font-size: calc(10px + 2vmin);
   color: $text-color;
@@ -88,6 +97,6 @@ img {
 }
 
 .laberinto{
-
+  transition: transform .35s ease-in-out;
   font: 15px 'Courier New';
 }

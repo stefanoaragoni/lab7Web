@@ -8,53 +8,218 @@ import Fetcher from "./components/Fetcher";
 const App = () => {
 
     const [lab, setLab] = React.useState([])
-    const [wTemp, setW] = React.useState(2)
-    const [hTemp, setH] = React.useState(2)
+    const [width, setWidth] = React.useState(2)
+    const [height, setHeight] = React.useState(2)
 
 	const [contador, setContador] = React.useState(0)
 
     const NewGame = () => {
 		let arrayTemp = []
 
-        fetch("https://maze.juanelcaballo.club/?type=json&w="+wTemp+"&h="+hTemp).then(response => {
+        fetch("https://maze.juanelcaballo.club/?type=json&w="+width+"&h="+height).then(response => {
         return response.json();
         }).then(responseInJSON => {
+			var rowKey = 0
             const res = responseInJSON.map(wall => {
-                let stringTemp = "";
+                let stringTemp = [];
                 wall.forEach(i => {
                 if (i == " ") {
-                    stringTemp = stringTemp + " ";
+                    stringTemp.push(" ");
                 } else {
-                    stringTemp = stringTemp + i;
+                    stringTemp.push(i);
                 }
                 });
-                arrayTemp.push({"id":contador, "line":stringTemp})
-				setContador(contador+1)
+                arrayTemp.push({"id":contador,"rowKey":rowKey, "line":stringTemp})
+				setContador(contador + 1)
+				rowKey = (rowKey + 1)
             });
         });
         setLab(arrayTemp)
     }
 
-	console.log(wTemp,hTemp)
-	console.log(lab)
+	document.onkeydown = (e) => {
+		e = e || window.event;
+
+		let labTemporal = [] 
+		var position = 0 
+		var row = 0
+
+		if (e.key === 'ArrowUp') {
+
+			lab.map(tarjetaTemp =>(
+				labTemporal.push(tarjetaTemp.line)
+			))
+		
+			for (var i = 0; i < labTemporal.length; i++) {
+				if(labTemporal[i].includes("p")){
+					position = labTemporal[i].indexOf("p")
+					row = i
+				}
+			}
+
+			var location = labTemporal[row-1][position]
+
+			if(location == "-" ||  location == "+" ||  location == "|" ){
+				console.log("WALL")
+
+			}else{
+				if(location == "g"){
+					alert("SUCCESS")
+					NewGame()
+				}else{
+					labTemporal[row-1][position] = "p"
+					labTemporal[row][position] = " "
+					
+					setLab(lab => {
+						return lab.map(filasTemp => {
+						  if (filasTemp.rowKey === row){
+							return {...filasTemp, line:labTemporal[row]}
+						  }else if(filasTemp.rowKey === row-1){
+							return {...filasTemp, line:labTemporal[row-1]}
+						  }
+						  else{
+							return {...filasTemp}
+						  }
+						})
+					  })
+				}
+			}
+
+
+		} else if (e.key === 'ArrowDown') {
+
+			lab.map(tarjetaTemp =>(
+				labTemporal.push(tarjetaTemp.line)
+			))
+		
+			for (var i = 0; i < labTemporal.length; i++) {
+				if(labTemporal[i].includes("p")){
+					position = labTemporal[i].indexOf("p")
+					row = i
+				}
+			}
+
+			var location = labTemporal[row+1][position]
+
+			if(location == "-" ||  location == "+" ||  location == "|" ){
+				console.log("WALL")
+
+			}else{
+				if(location == "g"){
+					alert("SUCCESS")
+					NewGame()
+				}else{
+					labTemporal[row+1][position] = "p"
+					labTemporal[row][position] = " "
+					
+					setLab(lab => {
+						return lab.map(filasTemp => {
+						  if (filasTemp.rowKey === row){
+							return {...filasTemp, line:labTemporal[row]}
+						  }else if(filasTemp.rowKey === row+1){
+							return {...filasTemp, line:labTemporal[row+1]}
+						  }
+						  else{
+							return {...filasTemp}
+						  }
+						})
+					  })
+				}
+			}
+
+		} else if (e.key === 'ArrowLeft') {
+
+			lab.map(tarjetaTemp =>(
+				labTemporal.push(tarjetaTemp.line)
+			))
+		
+			for (var i = 0; i < labTemporal.length; i++) {
+				if(labTemporal[i].includes("p")){
+					position = labTemporal[i].indexOf("p")
+					row = i
+				}
+			}
+
+			var location = labTemporal[row][position-1]
+
+			if(location == "-" ||  location == "+" ||  location == "|" ){
+				console.log("WALL")
+
+			}else{
+				if(location == "g"){
+					alert("SUCCESS")
+					NewGame()
+				}else{
+					labTemporal[row][position-1] = "p"
+					labTemporal[row][position] = " "
+					
+					setLab(lab => {
+						return lab.map(filasTemp => {
+						  if (filasTemp.rowKey === row){
+							return {...filasTemp, line:labTemporal[row]}
+						  }
+						  else{
+							return {...filasTemp}
+						  }
+						})
+					  })
+				}
+			}
+		} else if (e.key === 'ArrowRight') {
+
+			lab.map(tarjetaTemp =>(
+				labTemporal.push(tarjetaTemp.line)
+			))
+		
+			for (var i = 0; i < labTemporal.length; i++) {
+				if(labTemporal[i].includes("p")){
+					position = labTemporal[i].indexOf("p")
+					row = i
+				}
+			}
+
+			var location = labTemporal[row][position+1]
+
+			if(location == "-" ||  location == "+" ||  location == "|" ){
+				console.log("WALL")
+
+			}else{
+				if(location == "g"){
+					alert("SUCCESS")
+					NewGame()
+				}else{
+					labTemporal[row][position+1] = "p"
+					labTemporal[row][position] = " "
+					
+					setLab(lab => {
+						return lab.map(filasTemp => {
+						  if (filasTemp.rowKey === row){
+							return {...filasTemp, line:labTemporal[row]}
+						  }
+						  else{
+							return {...filasTemp}
+						  }
+						})
+					  })
+				}
+			}
+		}
+	}
+	
+	const color = 'white'
+
     return(
         <div className="App">
 			<Header/>
 
             <div className="bottom">
                 <h4>WxH:</h4>
-                <input type="number" id="w" name="w" defaultValue={wTemp} min="1" max="6" onChange={(e) => setW(e.target.value)}></input>
-                <input type="number" id="h" name="h" defaultValue={wTemp} min="1" max="6" onChange={(e) => setH(e.target.value)}></input>
+                <input type="number" id="w" name="w" defaultValue={width} min="1" max="20" onChange={(e) => setWidth(e.target.value)}></input>
+                <input type="number" id="h" name="h" defaultValue={width} min="1" max="5" onChange={(e) => setHeight(e.target.value)}></input>
                 <button className="button1" onClick={(NewGame)}>NEW GAME</button>
             </div>
 
-            <div className="container2">
-				<div className = "laberinto">
-					{lab.map(tarjetaTemp =>(
-						<h1 key={tarjetaTemp.id}>{tarjetaTemp.line}</h1>
-					))}
-				</div>
-			</div>
+            <Fetcher lab={lab}/>
 
         </div>        
     )
