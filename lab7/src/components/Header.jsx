@@ -23,13 +23,15 @@ const Header = () => {
         margin: 10,
         padding: 10
       })}>
-        Stefano Aragoni - 20261
+        <ReactAudioPlayer 
+          src={ahs}
+          autoPlay
+          loop
+          controls
+				/>
       </div>
 
-      <ReactAudioPlayer 
-				src={ahs}
-				autoPlay
-				/>
+
 
     </div>
   );
