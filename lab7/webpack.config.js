@@ -6,7 +6,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "index.js",
   },
   resolve: {
     extensions: [".js", ".jsx"],
@@ -37,13 +37,18 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
             loader: "file-loader",
             options: { name: "assets/[hash].[ext]" },
           },
         ],
+      },
+      {
+        test: /\.mp3$/,
+
+        loader: 'file-loader'
       },
     ],
   },

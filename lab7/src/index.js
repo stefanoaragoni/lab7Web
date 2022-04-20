@@ -217,6 +217,7 @@ const App = () => {
                 <input type="number" id="w" name="w" defaultValue={width} min="1" max="20" onChange={(e) => setWidth(e.target.value)}></input>
                 <input type="number" id="h" name="h" defaultValue={width} min="1" max="5" onChange={(e) => setHeight(e.target.value)}></input>
                 <button className="button1" onClick={(NewGame)}>NEW GAME</button>
+
             </div>
 
             <Fetcher lab={lab}/>
