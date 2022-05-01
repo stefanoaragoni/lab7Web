@@ -8,13 +8,14 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "start": "webpack-dev-server --history-api-fallback --open --mode development",
-    "lint": "eslint src/index.js"
+    "lint": "eslint src/**"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.9.0",
+    "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-audio-player": "^0.17.0",
     "react-dom": "^18.0.0",

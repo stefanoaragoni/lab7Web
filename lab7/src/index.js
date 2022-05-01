@@ -1,9 +1,9 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import './assets/styles/Main.scss'
+import '../assets/styles/Main.scss'
 
-import Header from './components/Header'
-import Fetcher from './components/Fetcher'
+import Header from './Header'
+import Fetcher from './Fetcher'
 
 function App() {
   const [lab, setLab] = React.useState([])
